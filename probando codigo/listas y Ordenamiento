@@ -1,0 +1,697 @@
+"""Métodos de listas
+Las listas en Python tienen varios métodos incorporados que
+nos permiten manipular y modificar los elementos de la lista.
+Algunos métodos comunes son:
+
+append(elemento): agrega un elemento al final de la lista.
+insert(indice, elemento): inserta un elemento en una posición específica de la lista.
+remove(elemento): elimina la primera aparición de un elemento en la lista.
+pop(indice): elimina y devuelve el elemento en una posición específica de la lista.
+sort(): ordena los elementos de la lista en orden ascendente.
+reverse(): invierte el orden de los elementos en la lista."""
+
+# para ordenar por múltiples claves en una lista de tuplas
+from operator import itemgetter
+frutas = ["manzana", "banana", "naranja"]
+print(frutas[0])  # Imprime "manzana"
+print(frutas[1])  # Imprime "banana"
+print(frutas[2])  # Imprime "naranja"
+print(frutas[-1])  # Imprime "naranja"
+print(frutas[-2])  # Imprime "banana"
+print(frutas[-3])  # Imprime "manzana"
+frutas[1] = "kiwi"
+print(frutas)  # Imprime ["manzana", "kiwi", "naranja"]
+frutas.append("pera")
+print(frutas)  # Imprime ["manzana", "kiwi", "naranja", "pera"]
+frutas.insert(1, "fresa")
+print(frutas)  # Imprime ["manzana", "fresa", "kiwi", "naranja", "pera"]
+frutas.insert(3, "platano")
+# Imprime ["manzana", "fresa", "platano", "kiwi", "naranja", "pera"]
+print(frutas)
+frutas.remove("kiwi")
+print(frutas)  # Imprime ["manzana", "fresa", "naranja", "pera"]
+
+# lista.pop() elimina el último elemento y lo devuelve LIFO (Last In First Out)
+fruta_eliminada = frutas.pop()
+print(fruta_eliminada)  # Imprime "pera"
+print(frutas)  # Imprime ["manzana", "fresa", "naranja"]
+fruta_eliminada = frutas.pop(1)
+print(fruta_eliminada)  # Imprime "fresa"
+print(frutas)  # Imprime ["manzana", "naranja"]
+print("*" * 20)
+# Listas de comprensión
+print("Listas de comprensión")
+print
+print("*" * 20)
+numeros = [1, 2, 3, 4, 5]
+cuadrados = [x ** 2 for x in numeros if x % 2 == 0]
+print(cuadrados)  # Imprime [4, 16]
+print("*" * 20)
+numeros = [1, 2, 3, 4, 5]
+cuadrados = []
+
+for x in numeros:
+
+    resultado = x % 2
+    print(f"El resultado de {x} % 2 es {resultado}")
+    if x % 2 == 0:
+        cuadrados.append(x ** 2)
+
+print(cuadrados)  # Imprime [4, 16]
+
+lista_2d = [[1, 2], [3, 4]]
+print(lista_2d[0][0])  # Imprime 1
+print(lista_2d[0][1])  # Imprime 2
+print(lista_2d[1][0])  # Imprime 3
+print(lista_2d[1][1])  # Imprime 4
+plana = [num for sublista in lista_2d for num in sublista]
+print(plana)  # Imprime [1, 2, 3, 4]
+
+lista_2d = [[1, 2], [3, 4]]
+
+plana = []
+for sublista in lista_2d:
+    print(f"Procesando sublista: {sublista}")
+    for num in sublista:
+        print(f"Agregando número: {num}")
+plana.append(num)
+
+
+"""Métodos de tuplas
+Aunque las tuplas son inmutables, Python proporciona varios métodos
+útiles para trabajar con ellas:
+
+count(elemento): devuelve el número de veces que aparece un elemento en la tupla.
+index(elemento): devuelve el índice de la primera aparición de un elemento en la tupla.
+Opcionalmente, se puede especificar el inicio y fin de la búsqueda.
+len(tupla): aunque no es un método de tupla propiamente dicho, esta función incorporada
+devuelve la longitud de la tupla.
+"""
+print("*" * 20)
+print("Tuplas")
+print("*" * 20)
+tupla = (1, 2, 3)
+print(tupla[0])  # Imprime 1
+print(tupla[1])  # Imprime 2
+print(tupla[2])  # Imprime 3
+print("*" * 20)
+print("*" * 20)
+mi_tupla = (1, 2, 3, 2, 1, 7, 4, 6, 2)
+
+
+print(mi_tupla.index(2))   # Salida: 1
+
+print(mi_tupla.index(2, 2))  # Salida: 3
+
+print(mi_tupla.index(7, 2, 7))  # Salida: 5
+
+# Diccionarios
+print("*" * 20)
+print("Diccionarios")
+print("*" * 20)
+diccionario = {"nombre": "Alice", "edad": 30, "ciudad": "New York"}
+print(diccionario["nombre"])  # Imprime "Alice"
+print(diccionario["edad"])    # Imprime 30
+print(diccionario["ciudad"])  # Imprime "New York"
+"""Métodos de diccionarios
+Los diccionarios en Python tienen varios métodos incorporados para manipular y acceder a los elementos.
+Algunos métodos comunes son:
+
+keys(): devuelve una vista de todas las claves del diccionario.
+values(): devuelve una vista de todos los valores del diccionario.
+items(): devuelve una vista de todos los pares clave-valor del diccionario.
+update(otro_diccionario): actualiza el diccionario con los pares clave-valor de otro diccionario."""
+persona = {"nombre": "Juan", "edad": 25, "ciudad": "Madrid"}
+
+
+print(persona.keys())    # Imprime dict_keys(["nombre", "edad", "ciudad"])
+print(persona.values())  # Imprime dict_values(["Juan", 25, "Madrid"])
+# Imprime dict_items([("nombre", "Juan"), ("edad", 25), ("ciudad", "Madrid")])
+print(persona.items())
+
+
+persona.update({"profesion": "Ingeniero"})
+# Imprime {"nombre": "Juan", "edad": 25, "ciudad": "Madrid", "profesion": "Ingeniero"}
+print(persona)
+
+# Conjuntos (set)
+
+print("*" * 20)
+print("Conjuntos (set)")
+print("*" * 20)
+conjunto = {1, 2, 3, 4, 5}
+print(conjunto)  # Imprime {1, 2, 3, 4, 5}
+conjunto.add(6)
+print(conjunto)  # Imprime {1, 2, 3, 4  , 5, 6}
+conjunto.remove(3)
+print(conjunto)  # Imprime {1, 2, 4, 5, 6}
+
+# Para crear un conjunto, utiliza llaves o la función set():
+frutas = {"manzana", "banana", "naranja"}
+numeros = set([1, 2, 3, 4, 5])
+
+conjunto1 = {1, 2, 3}
+conjunto2 = {3, 4, 5}
+
+
+union = conjunto1 | conjunto2
+print(union)  # Imprime {1, 2, 3, 4, 5}
+
+interseccion = conjunto1 & conjunto2
+print(interseccion)  # Imprime {3}
+
+diferencia = conjunto1 - conjunto2
+print(diferencia)  # Imprime {1, 2}
+
+diferencia_simetrica = conjunto1 ^ conjunto2
+print(diferencia_simetrica)  # Imprime {1, 2, 4, 5}
+
+""""Métodos de conjuntos
+Los conjuntos en Python tienen varios métodos incorporados para manipular y acceder a los elementos.
+Algunos métodos comunes son:
+
+add(elemento): agrega un elemento al conjunto.
+remove(elemento): elimina un elemento del conjunto. Si el elemento no existe, genera un error.
+discard(elemento): elimina un elemento del conjunto si está presente. Si el elemento no existe, no hace nada.
+clear(): elimina todos los elementos del conjunto."""
+
+print("*" * 20, "Ejemplo de métodos de conjuntos", "*" * 20)
+frutas = {"manzana", "banana", "naranja"}
+
+frutas.add("pera")
+print(frutas)  # Imprime {"manzana", "banana", "naranja", "pera"}
+frutas.remove("banana")
+print(frutas)  # Imprime {"manzana", "naranja", "pera"}
+frutas.discard("uva")
+print(frutas)  # Imprime {"manzana", "naranja", "pera"}
+frutas.clear()
+print(frutas)  # Imprime set()
+
+# Ordenamiento
+numeros = [5, 2, 9, 1, 5, 6]
+numeros.sort()
+print(numeros)  # Imprime [1, 2, 5, 5, 6, 9]
+numeros.sort(reverse=True)  # Ordena en orden descendente
+print(numeros)  # Imprime [9, 6, 5, 5, 2, 1]
+numeros_ordenados = sorted(numeros)  # Devuelve una nueva lista ordenada
+print(numeros_ordenados)  # Imprime [1, 2, 5, 5, 6, 9]
+print(numeros)  # Imprime [5, 2, 9, 1, 5, 6]
+# Ordena en orden descendente
+numeros_ordenados_desc = sorted(numeros, reverse=True)
+print(numeros_ordenados_desc)  # Imprime [9, 6, 5, 5, 2, 1]
+print(numeros)  # Imprime [5, 2, 9, 1, 5, 6]
+
+# Ordenar una lista de tuplas por el segundo elemento
+
+tuplas = [(1, 'b'), (2, 'a'), (3, 'c')]
+tuplas_ordenadas = sorted(tuplas, key=lambda x: x[1])
+print(tuplas_ordenadas)  # Imprime [(2, 'a'), (1, 'b'), (3, 'c')]
+
+# Ordenar una lista de diccionarios por una clave específica
+diccionarios = [{'nombre': 'Juan', 'edad': 25}, {
+    'nombre': 'Ana', 'edad': 22}, {'nombre': 'Luis', 'edad': 30}]
+diccionarios_ordenados = sorted(diccionarios, key=lambda x: x['edad'])
+# Imprime [{'nombre': 'Ana', 'edad': 22}, {'nombre': 'Juan', 'edad': 25}, {'nombre': 'Luis', 'edad': 30}]
+print(diccionarios_ordenados)
+
+# Ordenar una lista de cadenas por su longitud
+cadenas = ['manzana', 'kiwi', 'banana', 'pera']
+cadenas_ordenadas = sorted(cadenas, key=len)
+print(cadenas_ordenadas)  # Imprime ['kiwi', 'pera', 'manzana', 'banana']
+
+# Ordenar una lista de cadenas ignorando mayúsculas y minúsculas
+cadenas_mixtas = ['manzana', 'Kiwi', 'banana', 'Pera']
+cadenas_ordenadas_case_insensitive = sorted(cadenas_mixtas, key=str.lower)
+# Imprime ['banana', 'Kiwi', 'manzana', 'Pera']
+print(cadenas_ordenadas_case_insensitive)
+# https://developers.google.com/edu/python/strings?hl=es-419#string-methods
+# Métodos de cadenas
+
+# (first name, last name, score) tuples
+grade = [('Freddy', 'Frank', 3), ('Anil', 'Frank', 100), ('Anil', 'Wang', 24)]
+sorted(grade, key=itemgetter(1, 0))  # ordena por apellido, luego por nombre
+# [('Anil', 'Frank', 100), ('Freddy', 'Frank', 3), ('Anil', 'Wang', 24)]
+
+sorted(grade, key=itemgetter(0, -1))
+# [('Anil', 'Wang', 24), ('Anil', 'Frank', 100), ('Freddy', 'Frank', 3)]
+# ordena por el primer elemento (nombre) y luego por el último elemento (puntaje) en orden ascendente
+
+print("+" * 20)
+# grade no se ha modificado, sigue siendo [('Freddy', 'Frank', 3), ('Anil', 'Frank', 100), ('Anil', 'Wang', 24)]
+print(grade)
+grade.sort()
+# grade ahora está ordenado: [('Anil', 'Frank', 100), ('Anil', 'Wang', 24), ('Freddy', 'Frank', 3)]
+print(grade)
+
+
+# TUPLAS
+print("*" * 20)
+print("Tuplas")
+print("*" * 20)
+
+tuple = (1, 2, 'hi')
+print(len(tuple))  # 3
+print(tuple[2])  # hi
+# tuple[2] = 'bye'  ## NO, tuples cannot be changed
+tuple = (1, 2, 'bye')  # this works
+
+tuple = ('hi',)  # size-1 tuple
+
+
+def Foo(): return 2, 4
+
+
+(x, y, z) = (42, 13, "hike")
+print(z)  # hike
+(err_string, err_code) = Foo()  # Foo() returns a length-2 tuple
+print(err_code)  # 4
+
+# Comprensión de listas (opcional)
+print("*" * 20)
+print("Listas de comprensión")
+print("*" * 20)
+numeros = [1, 2, 3, 4, 5]
+cuadrados = [x ** 2 for x in numeros if x % 2 == 0]
+print(cuadrados)  # Imprime [4, 16]
+
+# Equivalente sin comprensión de listas
+numeros = [1, 2, 3, 4, 5]
+cuadrados = []
+
+for x in numeros:
+
+    resultado = x % 2
+    print(f"El resultado de {x} % 2 es {resultado}")
+    if x % 2 == 0:
+        cuadrados.append(x ** 2)
+
+print(cuadrados)  # Imprime [4, 16]
+
+
+strs = ['hello', 'and', 'goodbye']
+
+shouting = [s.upper() + '!!!' for s in strs]
+# ['HELLO!!!', 'AND!!!', 'GOODBYE!!!']
+
+# Select values <= 2
+nums = [2, 8, 1, 6]
+small = [n for n in nums if n <= 2]  # [2, 1]
+
+# Select fruits containing 'a', change to upper case
+fruits = ['apple', 'cherry', 'banana', 'lemon']
+
+afruits = [s.upper() for s in fruits if 'a' in s]
+# ['APPLE', 'BANANA']
+
+# Tabla de hash de Dict
+
+# Can build up a dict by starting with the empty dict {}
+# and storing key/value pairs into the dict like this:
+# dict[key] = value-for-that-key
+dict = {}
+dict['a'] = 'alpha'
+dict['g'] = 'gamma'
+dict['o'] = 'omega'
+
+print(dict)  # {'a': 'alpha', 'o': 'omega', 'g': 'gamma'}
+
+print(dict['a'])  # Simple lookup, returns 'alpha'
+dict['a'] = 6  # Put new key/value into dicta' in dict  # True
+   # print(dict['z'])                  ## Throws KeyError
+if 'z' in dict:
+    print(dict['z'])  # Avoid KeyError
+    print(dict.get('z'))  # None (instead of KeyError)
+
+"""Métodos de listas
+Las listas en Python tienen varios métodos incorporados que
+nos permiten manipular y modificar los elementos de la lista.
+Algunos métodos comunes son:
+
+append(elemento): agrega un elemento al final de la lista.
+insert(indice, elemento): inserta un elemento en una posición específica de la lista.
+remove(elemento): elimina la primera aparición de un elemento en la lista.
+pop(indice): elimina y devuelve el elemento en una posición específica de la lista.
+sort(): ordena los elementos de la lista en orden ascendente.
+reverse(): invierte el orden de los elementos en la lista."""
+
+frutas = ["manzana", "banana", "naranja"]
+print(frutas[0])  # Imprime "manzana"
+print(frutas[1])  # Imprime "banana"
+print(frutas[2])  # Imprime "naranja"
+print(frutas[-1])  # Imprime "naranja"
+print(frutas[-2])  # Imprime "banana"
+print(frutas[-3])  # Imprime "manzana"
+frutas[1] = "kiwi"
+print(frutas)  # Imprime ["manzana", "kiwi", "naranja"]
+frutas.append("pera")
+print(frutas)  # Imprime ["manzana", "kiwi", "naranja", "pera"]
+frutas.insert(1, "fresa")
+print(frutas)  # Imprime ["manzana", "fresa", "kiwi", "naranja", "pera"]
+frutas.insert(3, "platano")
+# Imprime ["manzana", "fresa", "platano", "kiwi", "naranja", "pera"]
+print(frutas)
+frutas.remove("kiwi")
+print(frutas)  # Imprime ["manzana", "fresa", "naranja", "pera"]
+
+# lista.pop() elimina el último elemento y lo devuelve LIFO (Last In First Out)
+fruta_eliminada = frutas.pop()
+print(fruta_eliminada)  # Imprime "pera"
+print(frutas)  # Imprime ["manzana", "fresa", "naranja"]
+fruta_eliminada = frutas.pop(1)
+print(fruta_eliminada)  # Imprime "fresa"
+print(frutas)  # Imprime ["manzana", "naranja"]
+print("*" * 20)
+# Listas de comprensión
+print("Listas de comprensión")
+print
+print("*" * 20)
+numeros = [1, 2, 3, 4, 5]
+cuadrados = [x ** 2 for x in numeros if x % 2 == 0]
+print(cuadrados)  # Imprime [4, 16]
+print("*" * 20)
+numeros = [1, 2, 3, 4, 5]
+cuadrados = []
+
+for x in numeros:
+
+    resultado = x % 2
+    print(f"El resultado de {x} % 2 es {resultado}")
+    if x % 2 == 0:
+        cuadrados.append(x ** 2)
+
+print(cuadrados)  # Imprime [4, 16]
+
+lista_2d = [[1, 2], [3, 4]]
+print(lista_2d[0][0])  # Imprime 1
+print(lista_2d[0][1])  # Imprime 2
+print(lista_2d[1][0])  # Imprime 3
+print(lista_2d[1][1])  # Imprime 4
+plana = [num for sublista in lista_2d for num in sublista]
+print(plana)  # Imprime [1, 2, 3, 4]
+
+lista_2d = [[1, 2], [3, 4]]
+
+plana = []
+for sublista in lista_2d:
+    print(f"Procesando sublista: {sublista}")
+    for num in sublista:
+        print(f"Agregando número: {num}")
+plana.append(num)
+
+
+"""Métodos de tuplas
+Aunque las tuplas son inmutables, Python proporciona varios métodos
+útiles para trabajar con ellas:
+
+count(elemento): devuelve el número de veces que aparece un elemento en la tupla.
+index(elemento): devuelve el índice de la primera aparición de un elemento en la tupla.
+Opcionalmente, se puede especificar el inicio y fin de la búsqueda.
+len(tupla): aunque no es un método de tupla propiamente dicho, esta función incorporada
+devuelve la longitud de la tupla.
+"""
+print("*" * 20)
+print("Tuplas")
+print("*" * 20)
+tupla = (1, 2, 3)
+print(tupla[0])  # Imprime 1
+print(tupla[1])  # Imprime 2
+print(tupla[2])  # Imprime 3
+print("*" * 20)
+print("*" * 20)
+mi_tupla = (1, 2, 3, 2, 1, 7, 4, 6, 2)
+
+
+print(mi_tupla.index(2))   # Salida: 1
+
+print(mi_tupla.index(2, 2))  # Salida: 3
+
+print(mi_tupla.index(7, 2, 7))  # Salida: 5
+
+# Diccionarios
+print("*" * 20)
+print("Diccionarios")
+print("*" * 20)
+diccionario = {"nombre": "Alice", "edad": 30, "ciudad": "New York"}
+print(diccionario["nombre"])  # Imprime "Alice"
+print(diccionario["edad"])    # Imprime 30
+print(diccionario["ciudad"])  # Imprime "New York"
+"""Métodos de diccionarios
+Los diccionarios en Python tienen varios métodos incorporados para manipular y acceder a los elementos.
+Algunos métodos comunes son:
+
+keys(): devuelve una vista de todas las claves del diccionario.
+values(): devuelve una vista de todos los valores del diccionario.
+items(): devuelve una vista de todos los pares clave-valor del diccionario.
+update(otro_diccionario): actualiza el diccionario con los pares clave-valor de otro diccionario."""
+persona = {"nombre": "Juan", "edad": 25, "ciudad": "Madrid"}
+
+
+print(persona.keys())    # Imprime dict_keys(["nombre", "edad", "ciudad"])
+print(persona.values())  # Imprime dict_values(["Juan", 25, "Madrid"])
+# Imprime dict_items([("nombre", "Juan"), ("edad", 25), ("ciudad", "Madrid")])
+print(persona.items())
+
+
+persona.update({"profesion": "Ingeniero"})
+# Imprime {"nombre": "Juan", "edad": 25, "ciudad": "Madrid", "profesion": "Ingeniero"}
+print(persona)
+
+# Conjuntos (set)
+
+print("*" * 20)
+print("Conjuntos (set)")
+print("*" * 20)
+conjunto = {1, 2, 3, 4, 5}
+print(conjunto)  # Imprime {1, 2, 3, 4, 5}
+conjunto.add(6)
+print(conjunto)  # Imprime {1, 2, 3, 4  , 5, 6}
+conjunto.remove(3)
+print(conjunto)  # Imprime {1, 2, 4, 5, 6}
+
+# Para crear un conjunto, utiliza llaves o la función set():
+frutas = {"manzana", "banana", "naranja"}
+numeros = set([1, 2, 3, 4, 5])
+
+conjunto1 = {1, 2, 3}
+conjunto2 = {3, 4, 5}
+
+
+union = conjunto1 | conjunto2
+print(union)  # Imprime {1, 2, 3, 4, 5}
+
+interseccion = conjunto1 & conjunto2
+print(interseccion)  # Imprime {3}
+
+diferencia = conjunto1 - conjunto2
+print(diferencia)  # Imprime {1, 2}
+
+diferencia_simetrica = conjunto1 ^ conjunto2
+print(diferencia_simetrica)  # Imprime {1, 2, 4, 5}
+
+""""Métodos de conjuntos
+Los conjuntos en Python tienen varios métodos incorporados para manipular y acceder a los elementos.
+Algunos métodos comunes son:
+
+add(elemento): agrega un elemento al conjunto.
+remove(elemento): elimina un elemento del conjunto. Si el elemento no existe, genera un error.
+discard(elemento): elimina un elemento del conjunto si está presente. Si el elemento no existe, no hace nada.
+clear(): elimina todos los elementos del conjunto."""
+
+print("*" * 20, "Ejemplo de métodos de conjuntos", "*" * 20)
+frutas = {"manzana", "banana", "naranja"}
+
+frutas.add("pera")
+print(frutas)  # Imprime {"manzana", "banana", "naranja", "pera"}
+frutas.remove("banana")
+print(frutas)  # Imprime {"manzana", "naranja", "pera"}
+frutas.discard("uva")
+print(frutas)  # Imprime {"manzana", "naranja", "pera"}
+frutas.clear()
+print(frutas)  # Imprime set()
+
+# Ordenamiento
+numeros = [5, 2, 9, 1, 5, 6]
+numeros.sort()
+print(numeros)  # Imprime [1, 2, 5, 5, 6, 9]
+numeros.sort(reverse=True)  # Ordena en orden descendente
+print(numeros)  # Imprime [9, 6, 5, 5, 2, 1]
+numeros_ordenados = sorted(numeros)  # Devuelve una nueva lista ordenada
+print(numeros_ordenados)  # Imprime [1, 2, 5, 5, 6, 9]
+print(numeros)  # Imprime [5, 2, 9, 1, 5, 6]
+# Ordena en orden descendente
+numeros_ordenados_desc = sorted(numeros, reverse=True)
+print(numeros_ordenados_desc)  # Imprime [9, 6, 5, 5, 2, 1]
+print(numeros)  # Imprime [5, 2, 9, 1, 5, 6]
+
+# Ordenar una lista de tuplas por el segundo elemento
+
+tuplas = [(1, 'b'), (2, 'a'), (3, 'c')]
+tuplas_ordenadas = sorted(tuplas, key=lambda x: x[1])
+print(tuplas_ordenadas)  # Imprime [(2, 'a'), (1, 'b'), (3, 'c')]
+
+# Ordenar una lista de diccionarios por una clave específica
+diccionarios = [{'nombre': 'Juan', 'edad': 25}, {
+    'nombre': 'Ana', 'edad': 22}, {'nombre': 'Luis', 'edad': 30}]
+diccionarios_ordenados = sorted(diccionarios, key=lambda x: x['edad'])
+# Imprime [{'nombre': 'Ana', 'edad': 22}, {'nombre': 'Juan', 'edad': 25}, {'nombre': 'Luis', 'edad': 30}]
+print(diccionarios_ordenados)
+
+# Ordenar una lista de cadenas por su longitud
+cadenas = ['manzana', 'kiwi', 'banana', 'pera']
+cadenas_ordenadas = sorted(cadenas, key=len)
+print(cadenas_ordenadas)  # Imprime ['kiwi', 'pera', 'manzana', 'banana']
+
+# Ordenar una lista de cadenas ignorando mayúsculas y minúsculas
+cadenas_mixtas = ['manzana', 'Kiwi', 'banana', 'Pera']
+cadenas_ordenadas_case_insensitive = sorted(cadenas_mixtas, key=str.lower)
+# Imprime ['banana', 'Kiwi', 'manzana', 'Pera']
+print(cadenas_ordenadas_case_insensitive)
+# https://developers.google.com/edu/python/strings?hl=es-419#string-methods
+# Métodos de cadenas
+
+# (first name, last name, score) tuples
+grade = [('Freddy', 'Frank', 3), ('Anil', 'Frank', 100), ('Anil', 'Wang', 24)]
+sorted(grade, key=itemgetter(1, 0))  # ordena por apellido, luego por nombre
+# [('Anil', 'Frank', 100), ('Freddy', 'Frank', 3), ('Anil', 'Wang', 24)]
+
+sorted(grade, key=itemgetter(0, -1))
+# [('Anil', 'Wang', 24), ('Anil', 'Frank', 100), ('Freddy', 'Frank', 3)]
+# ordena por el primer elemento (nombre) y luego por el último elemento (puntaje) en orden ascendente
+
+print("+" * 20)
+# grade no se ha modificado, sigue siendo [('Freddy', 'Frank', 3), ('Anil', 'Frank', 100), ('Anil', 'Wang', 24)]
+print(grade)
+grade.sort()
+# grade ahora está ordenado: [('Anil', 'Frank', 100), ('Anil', 'Wang', 24), ('Freddy', 'Frank', 3)]
+print(grade)
+
+
+# TUPLAS
+print("*" * 20)
+print("Tuplas")
+print("*" * 20)
+
+tuple = (1, 2, 'hi')
+print(len(tuple))  # 3
+print(tuple[2])  # hi
+# tuple[2] = 'bye'  ## NO, tuples cannot be changed
+tuple = (1, 2, 'bye')  # this works
+
+tuple = ('hi',)  # size-1 tuple
+
+
+def Foo(): return 2, 4
+
+
+(x, y, z) = (42, 13, "hike")
+print(z)  # hike
+(err_string, err_code) = Foo()  # Foo() returns a length-2 tuple
+print(err_code)  # 4
+
+# Comprensión de listas (opcional)
+print("*" * 20)
+print("Listas de comprensión")
+print("*" * 20)
+numeros = [1, 2, 3, 4, 5]
+cuadrados = [x ** 2 for x in numeros if x % 2 == 0]
+print(cuadrados)  # Imprime [4, 16]
+
+# Equivalente sin comprensión de listas
+numeros = [1, 2, 3, 4, 5]
+cuadrados = []
+
+for x in numeros:
+
+    resultado = x % 2
+    print(f"El resultado de {x} % 2 es {resultado}")
+    if x % 2 == 0:
+        cuadrados.append(x ** 2)
+
+print(cuadrados)  # Imprime [4, 16]
+
+
+strs = ['hello', 'and', 'goodbye']
+
+shouting = [s.upper() + '!!!' for s in strs]
+# ['HELLO!!!', 'AND!!!', 'GOODBYE!!!']
+
+# Select values <= 2
+nums = [2, 8, 1, 6]
+small = [n for n in nums if n <= 2]  # [2, 1]
+
+# Select fruits containing 'a', change to upper case
+fruits = ['apple', 'cherry', 'banana', 'lemon']
+
+afruits = [s.upper() for s in fruits if 'a' in s]
+# ['APPLE', 'BANANA']
+print("*" * 20)
+# Tabla de hash de Dict
+
+
+# Can build up a dict by starting with the empty dict {}
+# and storing key/value pairs into the dict like this:
+# dict[key] = value-for-that-key
+dict = {}
+dict['a'] = 'alpha'
+dict['g'] = 'gamma'
+dict['o'] = 'omega'
+
+print(dict)  # {'a': 'alpha', 'o': 'omega', 'g': 'gamma'}
+
+print(dict['a'])  # Simple lookup, returns 'alpha'
+
+dict['a'] = 6  # Put new key/value into dict
+
+'a' in dict  # True
+   # print(dict['z'])                  ## Throws KeyError
+if 'z' in dict:
+        print(dict['z'])  # Avoid KeyError
+        print(dict.get('z'))  # None (instead of KeyError)
+
+  # By default, iterating over a dict iterates over its keys.
+  # Note that the keys are in a random order.
+for key in dict:
+    print(key)
+  ## prints a g o
+
+  ## Exactly the same as above
+for key in dict.keys():
+    print(key)
+
+  ## Get the .keys() list:
+print(dict.keys())  ## dict_keys(['a', 'o', 'g'])
+
+  ## Likewise, there's a .values() list of values
+print(dict.values())  ## dict_values(['alpha', 'omega', 'gamma'])
+
+  ## Common case -- loop over the keys in sorted order,
+  ## accessing each key/value
+for key in sorted(dict.keys()):
+    print(key, dict[key])
+
+  ## .items() is the dict expressed as (key, value) tuples
+print(dict.items())  ##  dict_items([('a', 'alpha'), ('o', 'omega'), ('g', 'gamma')])
+
+  ## This loop syntax accesses the whole dict by looping
+  ## over the .items() tuple list, accessing one (key, value)
+  ## pair on each iteration.
+for k, v in dict.items(): print(k, '>', v)
+  ## a > alpha    o > omega     g > gamma
+  
+  # Formato de dictados
+print("*" * 20)
+print("Formato de dictados")
+print("*" * 20) 
+
+h = {}
+h['palabra'] = 'garfield'
+h['contador'] = 42
+s = 'I want %(contador)d copies of %(palabra)s' % h  # %d for int, %s for string
+  # 'I want 42 copies of garfield'
+
+  # You can also use str.format().
+s = 'I want {contador} copies of {palabra}'.format(**h)
+print(s)  # 'I want 42 copies of garfield'
+
+#
+  # 'I want 42 copies of garfield':d} copies of {word}'.format(h)

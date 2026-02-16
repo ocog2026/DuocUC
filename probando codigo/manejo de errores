@@ -1,0 +1,57 @@
+# Error de sintaxis (SyntaxError)
+import models
+import modulo_inexistente  # No existe el módulo "modulo_inexistente"
+from flask import request, redirect, url_for, flash
+
+
+def mi_funcion()  # Falta los dos puntos
+
+
+print("Hola")
+
+
+# Error de nombre (NameError)
+print(variable_no_definida)
+
+# Error de tipo (TypeError)
+resultado = 5 + "10"  # No se pueden sumar un entero y una cadena
+
+# Error de valor (ValueError)
+numero = int("texto")  # No se puede convertir "texto" a entero
+# Error de índice (IndexError)
+lista = [1, 2, 3]
+print(lista[5])  # No existe el índice 5 en la lista
+# Error de clave (KeyError)
+diccionario = {"nombre": "Alice", "edad": 30}
+print(diccionario["ciudad"])  # No existe la clave "ciudad" en el
+diccionario
+# Error de división por cero (ZeroDivisionError)
+resultado = 10 / 0  # No se puede dividir por cero
+# Error de importación (ImportError)
+# Error de atributo (AttributeError)
+cadena = "Hola"
+print(cadena.no_existe)  # La cadena no tiene el atributo "no_existe"
+# Error de archivo (FileNotFoundError)
+with open("archivo_inexistente.txt", "r") as f:
+    contenido = f.read()  # No existe el archivo "archivo_inexistente.txt"
+# Error de clave duplicada (DuplicateKeyError) - No es un error incorporado, pero puede ocurrir en bases de datos
+# Error de conexión (ConnectionError) - Puede ocurrir al intentar conectarse a una base de datos o a una API
+# Error de autenticación (AuthenticationError) - Puede ocurrir al intentar acceder a un recurso protegido sin las credenciales adecuadas
+
+
+def agregar_cliente():
+    """
+    Agrega un nuevo cliente a la base de datos.
+
+    EXPLICACIÓN:
+    - URL: /clientes/agregar
+    - Método HTTP: POST
+    - Acción: Recibe los datos del formulario, valida y agrega el cliente a la BD
+    - Template: No hay template, se redirecciona después de procesar
+
+    FLUJO:
+    1. El usuario llena el formulario en /clientes/agregar (GET)
+    2. Al enviar el formulario, se hace un POST a /clientes/agregar
+    3. Se reciben los datos, se validan y se intenta agregar a la BD    """
+
+   

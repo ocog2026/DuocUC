@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+<!-- ========================================================================= -->
+<!-- PÁGINA: AGREGAR CLIENTE - templates/agregar.html -->
+<!-- Formulario para crear un nuevo cliente -->
+<!-- ========================================================================= -->
+
+{% block title %}Agregar Cliente - CRUD{% endblock %}
+
+{% block content %}
+<h2>➕ Agregar Nuevo Cliente</h2>
+
+<!-- Explicación del proceso -->
+<p style="color: #666; margin: 15px 0;">
+    Complete el formulario a continuación para registrar un nuevo cliente en la base de datos.
+</p>
+
+<!-- Formulario para agregar cliente -->
+<!-- 
+    EXPLICACIÓN del formulario:
+    - method="POST" → Envía los datos por POST (más seguro que GET)
+    - action="{{ url_for('agregar_cliente_post') }}" → URL a donde se envía el formulario
+    - Cada input tiene un name que coincide con los parámetros de la función agregar_cliente()
+-->
+<form method="POST" action="{{ url_for('agregar_cliente_post') }}" style="max-width: 600px;">
+    
+    <!-- CAMPO: Nombre del cliente -->
+    <div class="form-group">
+        <label for="nombre">Nombre del Cliente *</label>
+        <input type="text" 
+               id="nombre" 
+               name="nombre" 
+               placeholder="Ej: Juan Pérez" 
+               required>
+        <!-- Explicación: required hace que el campo sea obligatorio -->
+    </div>
+    
+    <!-- CAMPO: Email del cliente -->
+    <div class="form-group">
+        <label for="email">Correo Electrónico *</label>
+        <input type="email" 
+               id="email" 
+               name="email" 
+               placeholder="Ej: juan@ejemplo.com" 
+               required>
+        <!-- Explicación: type="email" valida que sea un email válido -->
+    </div>
+    
+    <!-- CAMPO: Teléfono del cliente -->
+    <div class="form-group">
+        <label for="telefono">Teléfono *</label>
+        <input type="tel" 
+               id="telefono" 
+               name="telefono" 
+               placeholder="Ej: +56 9 1234 5678" 
+               required>
+        <!-- Explicación: type="tel" es para números telefónicos -->
+    </div>
+    
+    <!-- CAMPO: Dirección del cliente -->
+    <div class="form-group">
+        <label for="direccion">Dirección *</label>
+        <textarea id="direccion" 
+                  name="direccion" 
+                  placeholder="Ej: Calle Principal 123, Departamento 4B" 
+                  required></textarea>
+        <!-- Explicación: textarea permite múltiples líneas de texto -->
+    </div>
+    
+    <!-- Botones de acción -->
+    <div class="form-footer">
+        <!-- Botón guardar: envía el formulario -->
+        <button type="submit" class="btn btn-success">
+            💾 Guardar Cliente
+        </button>
+        
+        <!-- Botón cancelar: vuelve a la lista sin guardar -->
+        <a href="{{ url_for('listar_clientes') }}" class="btn btn-secondary">
+            ❌ Cancelar
+        </a>
+    </div>
+</form>
+
+<!-- Información adicional -->
+<p style="color: #999; margin-top: 30px; font-size: 0.9em;">
+    * Todos los campos marcados con asterisco son obligatorios
+</p>
+{% endblock %}

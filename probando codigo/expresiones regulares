@@ -1,0 +1,76 @@
+# Expresiones regulares de Python
+
+import re  # Importar el módulo de expresiones regulares
+
+str = 'an example word:cat!!'
+match = re.search(r'word:\w\w\w', str)
+# If-statement after search() tests if it succeeded
+if match:
+    print('found', match.group())  # 'found word:cat'
+else:
+    print('did not find')
+
+# Patrones básicos
+
+# La ventaja de las expresiones regulares es que pueden especificar patrones, no solo caracteres fijos. Estos son los
+# patrones más básicos que coinciden con caracteres únicos:
+
+# a, X, 9, < los caracteres comunes simplemente coinciden exactamente. Los metacaracteres
+# que no coinciden con sí mismos porque tienen significados especiales son los siguientes: . ^ $ * + ? { [ ] \ | ( ) (detalles a continuación)
+# . (un punto): Coincide con cualquier carácter único, excepto el salto de línea “\n”
+# \w -- (w minúscula) coincide con una "palabra" carácter: una letra o un dígito, o una barra inferior [a-zA-Z0-9_]. Ten en cuenta que, aunque la palabra clave es el mnemónico de esto, solo coincide con un carácter de una sola palabra, no con una palabra completa. \W (W en mayúsculas) coincide con cualquier carácter que no sea una palabra.
+# \b: límite entre palabra y no palabra.
+# \s -- (con s minúscula) coincide con un solo carácter de espacio en blanco: espacio, línea nueva, retorno, tabulación, formulario [ \n[/\t\f]. \S (S mayúscula) coincide con cualquier carácter que no sea un espacio en blanco.
+# \t, \n, \t -- tab, nueva línea, retorno
+# \d -- dígito decimal [0-9] (algunas utilidades de regex más antiguas no admiten \d, pero todas admiten \w y \s)
+# ^ = inicio, $ = fin -- coincide con el principio o el final de la cadena
+# \ -- inhiben la "especialidad" de un carácter. Por ejemplo, usa \. para que coincida con un punto o \\ para que coincida con una barra. Si no estás seguro de si un carácter tiene un significado especial, como “@”, puedes intentar poner una barra delante de él, \@. Si no es una secuencia de escape válida, como \c, tu programa de Python se detendrá con un error.
+
+
+# Search for pattern 'iii' in string 'piiig'.
+# All of the pattern must match, but it may appear anywhere.
+# On success, match.group() is matched text.
+match = re.search(r'iii', 'piiig')  # found, match.group() == "iii"
+match = re.search(r'igs', 'piiig')  # not found, match == None
+
+# . = any char but \n
+match = re.search(r'..g', 'piiig')  # found, match.group() == "iig"
+
+# \d = digit char, \w = word char
+print("*" * 20)
+match = re.search(r'\d\d\d', 'p123g')  # found, match.group() == "123"
+print(match.group() if match else "No match found")  # found, match.group() == "123"
+match = re.search(r'\w\w\w', 'p123g')  # found, match.group() == "123"
+print(match.group() if match else "No match found")  # found, match.group() == "123"
+print("*" * 20)
+match = re.search(r'\w\w\w', '@@abcd!!')  # found, match.group() == "abc"
+
+# Ejemplos de repeticion
+
+# i+ = one or more i's, as many as possible.
+match = re.search(r'pi+', 'piiig')  # found, match.group() == "piii"
+
+# Finds the first/leftmost solution, and within it drives the +
+# as far as possible (aka 'leftmost and largest').
+# In this example, note that it does not get to the second set of i's.
+match = re.search(r'i+', 'piiiiigiiii')  # found, match.group() == "ii"
+print(match.group() if match else "No match found")  # found, match.group() == "iiii"
+
+# \s* = zero or more whitespace chars
+# Here look for 3 digits, possibly separated by whitespace.
+# found, match.group() == "1 2   3"
+print("+" * 20)
+match = re.search(r'\d\s*\d\s*\d', 'xx1 2   3xx')
+print(match.group() if match else "No match found")
+# found, match.group() == "12  3"
+match = re.search(r'\d\s*\d\s*\d', 'xx12  3xx')
+print(match.group() if match else "No match found")
+# found, match.group() == "123"
+match = re.search(r'\d\s*\d\s*\d', 'xx123xx')
+print(match.group() if match else "No match found") 
+match = re.search(r'\d\s*\d\s*\d', 'xx1x2x3')
+print(match.group() if match else "No match found") 
+# ^ = matches the start of string, so this fails:
+match = re.search(r'^b\w+', 'foobar')  # not found, match == None
+# but without the ^ it succeeds:
+match = re.search(r'b\w+', 'foobar')  # found, match.group() == "bar"

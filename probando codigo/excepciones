@@ -1,0 +1,58 @@
+ # Manejo de excepciones
+
+    # Try
+
+try:
+    # Código que puede generar una excepción
+    resultado = 10 / 0  # División por cero
+    print(resultado)
+except ZeroDivisionError:
+    print("Error: División por cero")
+
+    
+    # Except
+
+try:
+        # Código que puede generar una excepción
+    resultado = 10 / 0  # División por cero
+    print(resultado)
+
+except ZeroDivisionError:
+        print("Error: División por cero")
+except ValueError:
+    print("Error: Valor inválido")
+
+# Finally
+
+try:
+    # Código que puede generar una excepción
+    archivo = open("archivo.txt", "r")
+    # Realizar operaciones con el archivo
+except FileNotFoundError:
+    print("Error: Archivo no encontrado")    
+finally:
+    archivo.close()  # Cerrar el archivo siempre, incluso si ocurre una excepción
+
+
+
+print("*" * 20)
+print("Excepciones personalizadas")
+print("*" * 20)
+
+# Excepciones personalizadas
+
+def funcion():
+    # Código que puede generar una excepción personalizada
+    condicion = True  # Cambia esto para probar la excepción
+    if condicion:
+        raise Exception("Descripción del error")
+
+
+try:
+    funcion()
+except Exception as e:
+    print(f"Error: {str(e)}")
+    
+    
+    
+

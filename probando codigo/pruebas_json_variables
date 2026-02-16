@@ -1,0 +1,37 @@
+# comentario de una linea
+import json
+
+datos = {"nombre": "Ana", "edad": 30, "profesion": "Ingenieroa de Software"}
+# Guardar
+with open("datos.json", "w") as f:
+    json.dump(datos, f)
+
+# Leer
+with open("datos.json", "r") as f:
+    datos_cargados = json.load(f)
+"""comentario de varias
+lineas"""
+texto = "prueba de comillas \"hola\""
+a=b=c=10    
+d = 4//1.5 # division entera
+e = 5%2 # modulo o resto de la division
+
+print(datos_cargados)
+print(texto,a,b,c,d,e) 
+
+a = 10
+b = 3
+
+
+igual = a == b   # False
+print(igual)
+distinto = a != b  # True   
+print(distinto)
+mayor = a > b  # True
+print(mayor)            
+menor = a < b  # False
+print(menor)
+mayor_igual = a >= b  # True    
+print(mayor_igual)
+menor_igual = a <= b  # False   
+print(menor_igual)  

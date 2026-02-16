@@ -1,0 +1,84 @@
+# Métodos de cadenas
+s = "Hola, este es un texto de prueba."
+print(s.upper())  # HOLA, ESTE ES UN TEXTO DE PRUEBA.
+print(s.lower())  # hola, este es un texto de prueba.
+print(s.title())  # Hola, Este Es Un Texto De Prueba.
+print(s.capitalize())  # Hola, este es un texto de prueba.
+"""
+s.lower(), s.upper(): muestra la versión de la cadena en minúsculas o mayúsculas.
+s.strip(): muestra una cadena sin espacios en blanco del principio y del final.
+s.isalpha()/s.isdigit()/s.isspace()... -- comprueba si todos los caracteres de la cadena están en las distintas
+clases de caracteres.
+s.startswith('other'), s.endswith('other') -- Comprueba si la cadena comienza o termina con la otra cadena dada.
+s.find('other'): Busca la otra cadena dada (no una expresión regular) dentro de s y muestra el primer índice donde
+comienza o -1 si no se encuentra.
+s.replace('old', 'new'): muestra una cadena donde aparecen todas las apariciones de "old" se reemplazó por 'nuevo'
+s.split('delim'): Muestra una lista de subcadenas separadas por el delimitador dado. El delimitador no es una
+expresión regular, es solo texto. 'aaa,bbb,ccc'.split(',') -> ['aaa', 'bbb', 'ccc'].
+Como un caso especial conveniente, s.split() (sin argumentos) se divide en todos los caracteres de espacios en blanco.
+s.join(list) -- opuesta a split(), une los elementos en la lista dada usando la cadena
+como delimitador. p.ej., '---'.join(['aaa', 'bbb', 'ccc']) -> aaa---bbb---ccc"""
+
+# Porciones de cadena
+
+s = str("Hello")
+print(s[1:4])  # llo
+print(s[:3])  # Hel
+print(s[2:])  # llo
+print(s[-3:])  # llo
+print(s[:-2])  # Hel
+print(s[::2])  # Hlo
+print(s[::-1])  # olleH
+
+# https://developers.google.com/edu/python/strings?hl=es-419#string-formatting
+# Formateo de cadenas
+name = "Alice"
+age = 30
+# My name is Alice and I am 30 years old.
+print("My name is %s and I am %d years old." % (name, age))
+# My name is Alice and I am 30 years old.
+print("My name is {} and I am {} years old.".format(name, age))
+# My name is Alice and I am 30 years old.
+print(f"My name is {name} and I am {age} years old.")
+
+# https://developers.google.com/edu/python/strings?hl=es-419#formatted-string-literals
+# Formateo de cadenas con f-strings
+name = "Bob"
+age = 25
+# My name is Bob and I am 25 years old.
+print(f"My name is {name} and I am {age} years old.")
+# My name is BOB and I am 30 years old.
+print(f"My name is {name.upper()} and I am {age + 5} years  old.")
+
+# Literales de cadena con formato
+value = 2.791514
+print(f'approximate value = {value:.2f}')  # approximate value = 2.79
+
+car = {'tires': 4, 'doors': 2}
+print(f'car = {car}')  # car = {'tires': 4, 'doors': 2}
+
+address_book = [{'name': 'N.X.', 'addr': '15 Jones St', 'bonus': 70},
+      {'name': 'J.P.', 'addr': '1005 5th St', 'bonus': 400},
+      {'name': 'A.A.', 'addr': '200001 Bdwy', 'bonus': 5},]
+
+for person in address_book:
+    print(f'{person["name"]:8} || {person["addr"]:20} || {person["bonus"]:>5}')
+
+  # N.X.     || 15 Jones St          ||    70
+  # J.P.     || 1005 5th St          ||   400
+  # A.A.     || 200001 Bdwy          ||     5
+
+# % de cadena
+
+# % operator
+
+  text = "%d little pigs come out, or I'll %s, and I'll %s, and I'll blow your %s down." % (3, 'huff', 'puff', 'house')
+
+
+# Add parentheses to make the long line work:
+
+text = (
+    "%d little pigs come out, "
+    "or I'll %s, and I'll %s, "
+    "and I'll blow your %s down."
+    % (3, 'huff', 'puff', 'house'))

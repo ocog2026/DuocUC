@@ -1,0 +1,2 @@
+Hola, este es un nuevo contenido.
+Este texto se agrega al final del archivo.

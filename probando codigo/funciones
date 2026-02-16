@@ -1,0 +1,71 @@
+def saludo():
+    print("¡Hola, mundo!")
+    
+def saludo2():
+    return "¡Hola, mundo!3"    
+
+saludo3=saludo2()  # Devuelve "¡Hola, mundo!" pero no lo imprime
+
+print(saludo3)  # Imprime "¡Hola, mundo!" porque se asignó el valor de retorno a saludo3
+    
+def suma(a, b):
+    return a + b
+def division(a, b):
+    try:        return a / b
+    except ZeroDivisionError:        return "Error: División por cero no permitida."   
+    except Exception as e:        return f"Error inesperado: {str(e)}"  
+    
+    
+
+
+resultado = suma(3, 4)
+print(resultado)  # Imprime 7
+
+resultado = division(10, 0) 
+print(resultado)  # Imprime 5.0     
+
+saludo()  # Imprime "¡Hola, mundo!"
+
+# funciones anonimas o lambda
+multiplicar = lambda x, y: x * y
+resultado = multiplicar(5, 6)       
+print(resultado)  # Imprime 30
+
+# Alcance de las variables (local vs. global)
+x = 10  # Variable global   
+def funcion_local():
+    x = 5  # Variable local
+    print(f"Valor dentro de la función: {x}")  # Imprime 5
+
+funcion_local()
+print(f"Valor fuera de la función: {x}")  # Imprime 10  
+
+
+"""Documentación de funciones (docstrings)
+Es una buena práctica documentar nuestras funciones utilizando docstrings. 
+Los docstrings son cadenas de texto que describen el propósito, 
+los parámetros y el valor de retorno de una función. Se colocan inmediatamente 
+después de la definición de la función y se encierran entre triples comillas dobles."""
+
+def saludar(nombre):
+    """
+    Saluda a una persona por su nombre.
+    
+    Parámetros:
+    nombre (str): El nombre de la persona a saludar.
+    
+    Retorna:
+    str: Un mensaje de saludo personalizado.
+    """
+    return f"¡Hola, {nombre}!"      
+
+# Funciones con número variable de argumentos
+
+def suma_variable(*numeros):
+    total = 0
+    for numero in numeros:
+        total += numero
+    return total
+
+print(suma_variable(1, 2, 3))  # Imprime 6
+print(suma_variable(4, 5, 6, 7))  # Imprime 22

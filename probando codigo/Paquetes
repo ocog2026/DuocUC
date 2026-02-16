@@ -1,0 +1,19 @@
+# Por ejemplo, creamos un directorio llamado mi_paquete con la siguiente estructura:
+
+mi_paquete/
+    __init__.py
+    modulo1.py
+    modulo2.py
+
+# Luego, podemos importar y utilizar los módulos del paquete en nuestro programa.
+from mi_paquete import modulo1, modulo2
+
+modulo1.funcion1()
+modulo2.funcion2()
+
+""""La importación y creación de módulos y paquetes en Python nos permite organizar y reutilizar nuestro código de manera eficiente. 
+Al modularizar nuestro código, podemos mantener un código más legible, estructurado y fácil de mantener.
+
+Recuerda explorar la biblioteca estándar de Python y aprovechar los módulos existentes, 
+que pueden facilitarte muchas tareas comunes. Además, no dudes en crear tus propios módulos y paquetes 
+para organizar y reutilizar tu código de manera efectiva."""

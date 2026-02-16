@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+<!-- ========================================================================= -->
+<!-- PÁGINA: LISTAR CLIENTES - templates/index.html -->
+<!-- Mostrar todos los clientes en una tabla con opciones de editar/eliminar -->
+<!-- ========================================================================= -->
+
+{% block title %}Lista de Clientes - CRUD{% endblock %}
+
+{% block content %}
+<div class="btn-group">
+    <!-- Botón para agregar un nuevo cliente -->
+    <a href="{{ url_for('agregar_cliente_form') }}" class="btn btn-primary">
+        ➕ Agregar Nuevo Cliente
+    </a>
+</div>
+
+<!-- Sección principal: Tabla de clientes o mensaje vacío -->
+{% if clientes %}
+    <!-- Si hay clientes, mostrar tabla -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Fecha de Creación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Bucle para mostrar cada cliente -->
+            {% for cliente in clientes %}
+            <tr>
+                <!-- EXPLICACIÓN: Se accede a los atributos del diccionario cliente -->
+                <!-- cliente['id'], cliente['nombre'], etc. -->
+                
+                <td>{{ cliente['id'] }}</td>
+                <td>{{ cliente['nombre'] }}</td>
+                <td>{{ cliente['email'] }}</td>
+                <td>{{ cliente['telefono'] }}</td>
+                <td>{{ cliente['direccion'] }}</td>
+                <td>{{ cliente['fecha_creacion'] }}</td>
+                <td>
+                    <!-- Botones de editar y eliminar -->
+                    <div class="actions">
+                        <!-- Botón EDITAR: lleva a /clientes/editar/<id> -->
+                        <a href="{{ url_for('mostrar_formulario_editar', cliente_id=cliente['id']) }}" 
+                           class="btn btn-warning btn-sm">
+                            ✎ Editar
+                        </a>
+                        
+                        <!-- Botón ELIMINAR: abre un formulario oculto para enviar POST -->
+                        <form method="POST" action="{{ url_for('eliminar_cliente', cliente_id=cliente['id']) }}" 
+                              style="display: inline;" 
+                              onsubmit="return confirm('¿Estás seguro de que deseas eliminar este cliente?')">
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                🗑 Eliminar
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <!-- Información de cantidad de clientes -->
+    <p style="margin-top: 15px; color: #666; text-align: right;">
+        Total: <strong>{{ clientes|length }}</strong> cliente(s)
+    </p>
+
+{% else %}
+    <!-- Si no hay clientes, mostrar mensaje vacío -->
+    <div class="empty-state">
+        <h2>📋 No hay clientes registrados</h2>
+        <p>Comienza a agregar clientes haciendo clic en el botón "Agregar Nuevo Cliente"</p>
+        <br>
+        <a href="{{ url_for('agregar_cliente_form') }}" class="btn btn-primary">
+            ➕ Agregar Primer Cliente
+        </a>
+    </div>
+{% endif %}
+{% endblock %}

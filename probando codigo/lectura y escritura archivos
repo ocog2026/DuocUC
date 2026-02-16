@@ -1,0 +1,42 @@
+# Lectura y escritura de archivos
+from pathlib import Path
+ruta_archivo = r"C:\Users\ocog1\OneDrive\Duoc UC\Fundamentos de programacion\probando codigo\datos.txt"
+print(f"Ruta del archivo: {ruta_archivo}")
+
+
+with open(ruta_archivo, 'r') as f:
+    # Leer
+    contenido = f.read()
+    print(contenido)
+    f.close()
+
+print("*" * 50)
+i=0
+with open(ruta_archivo, 'r', encoding='utf-8') as file:
+    for linea in file:
+        i+=1
+        print(i,linea,end='') # end='' evita el salto de línea adicional
+       #print(linea.strip()) # .strip() elimina el salto de línea \n
+file.close()
+print("*" * 50)
+
+with open('datos.txt', 'r') as archivo:
+    for linea in archivo:
+        # .strip() elimina espacios y \n al inicio/final
+        linea_limpia = linea.strip()
+        if linea_limpia: # Evita procesar líneas vacías
+            print(linea_limpia)
+
+
+
+
+
+# Escribir
+with open(ruta_archivo, 'a') as f:
+    f.write("Hola, este es un nuevo contenido8.\n")
+    f.close()
+
+
+
+
+

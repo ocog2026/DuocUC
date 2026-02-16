@@ -1,0 +1,18 @@
+# ============================================================================
+# DEPENDENCIAS DEL PROYECTO - requirements.txt
+# ============================================================================
+# Este archivo lista todas las librerías necesarias para el proyecto
+# Instalar con: pip install -r requirements.txt
+#
+
+# Framework web
+Flask==2.3.3
+
+# Conector MySQL para Python
+mysql-connector-python==8.0.33
+
+# Servidor WSGI (para producción, opcional)
+Werkzeug==2.3.7
+
+# Herramientas de desarrollo
+Jinja2==3.1.2

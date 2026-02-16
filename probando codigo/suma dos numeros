@@ -1,0 +1,26 @@
+# suma 2 nummeros 
+import os, time
+
+def limpiar_pantalla():
+    # 'nt' es para Windows, de lo contrario es Linux/Mac
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
+
+
+numero1 = 10
+numero2 = 5
+suma = numero1 + numero2
+resultado = suma -1
+decimal = -4.6
+cadena1 = 'permite incluir comillas "dobles"'
+cadena2 = "permite incluir comillas 'dobles'"
+cadena3 = """Triples comillas dobles
+por ejemplo linea 2
+linea 3
+y asi sucesivamente"""
+time.sleep(3)
+limpiar_pantalla()
+print(resultado)
+print(abs(decimal))
+print(cadena1,cadena2,cadena3)

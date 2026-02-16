@@ -1,0 +1,38 @@
+# Sistema de archivos: os, os.path, shutil
+
+"""Los módulos *os* y *os.path* incluyen muchas funciones para interactuar con el sistema de archivos. El módulo *shutil* puede copiar archivos.
+
+documentos del módulo OS
+filenames = os.listdir(dir) -- lista de nombres de archivos en esa ruta de acceso al directorio (sin incluir . y ..). Los nombres de archivo son solo los nombres que aparecen en el directorio, no sus rutas de acceso absolutas.
+os.path.join(dir, nombre de archivo): dado un nombre de archivo de la lista anterior, usa esto para unir el dir y el nombre de archivo a fin de crear una ruta de acceso
+os.path.abspath(path): dada una ruta de acceso, muestra una forma absoluta, p.ej., /home/nick/foo/bar.html
+os.path.dirname(path), os.path.basename(path) -- dado dir/foo/bar.html, muestra el dirname "dir/foo" y basename "bar.html"
+os.path.exists(path): true si existe
+os.mkdir(dir_path): hace un dir, os.makedirs(dir_path) realiza todos los dirs necesarios en esta ruta de acceso.
+openil.copy(ruta-de-origen, ruta de acceso dest): copia un archivo (deberían existir directorios de ruta de acceso de destino)."""
+
+
+## Example pulls filenames from a dir, prints their relative and absolute paths
+import os
+
+
+def printdir(dir):
+  filenames = os.listdir(dir)
+  print(f"Archivos en el directorio '{dir}':")  
+  for filename in filenames:
+    print(filename)  ## foo.txt
+    print(os.path.join(dir, filename)) ## dir/foo.txt (relative to current dir)
+    print(os.path.abspath(os.path.join(dir, filename))) ## /home/nick/dir/foo.txt
+    
+  
+  main_dir = '.'  # directorio actual
+  printdir(main_dir)   
+       
+  # Ejecución de procesos externos: subproceso
+  
+import subprocess
+# Ejecuta el comando 'ls -l' en la terminal y captura su salida
+result = subprocess.run(['dir', '-l'], capture_output=True, text=True)   
+# Imprime la salida del comando
+print(result.stdout)
+

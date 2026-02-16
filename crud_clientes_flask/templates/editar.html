@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+<!-- ========================================================================= -->
+<!-- PÁGINA: EDITAR CLIENTE - templates/editar.html -->
+<!-- Formulario para editar un cliente existente -->
+<!-- ========================================================================= -->
+
+{% block title %}Editar Cliente - CRUD{% endblock %}
+
+{% block content %}
+<h2>✎ Editar Cliente #{{ cliente['id'] }}</h2>
+
+<!-- Explicación del proceso -->
+<p style="color: #666; margin: 15px 0;">
+    Modifique los datos del cliente que desea actualizar y haga clic en "Guardar cambios".
+</p>
+
+<!-- Formulario para editar cliente -->
+<!--
+    EXPLICACIÓN:
+    - El action apunta a actualizar_cliente_post
+    - Los campos están rellenados con los valores actuales de cliente['campo']
+    - Es similar al formulario de agregar, pero actualiza en lugar de crear
+-->
+<form method="POST" action="{{ url_for('actualizar_cliente_post', cliente_id=cliente['id']) }}" style="max-width: 600px;">
+    
+    <!-- Campo oculto con el ID del cliente (solo para referencia visual) -->
+    <div class="form-group">
+        <label>ID del Cliente</label>
+        <input type="text" value="{{ cliente['id'] }}" disabled style="background-color: #f0f0f0;">
+        <!-- disabled hace que no sea editable y aparezca deshabilitado -->
+    </div>
+    
+    <!-- CAMPO: Nombre del cliente (rellenado con valor actual) -->
+    <div class="form-group">
+        <label for="nombre">Nombre del Cliente *</label>
+        <input type="text" 
+               id="nombre" 
+               name="nombre" 
+               placeholder="Ej: Juan Pérez"
+               value="{{ cliente['nombre'] }}"
+               required>
+        <!-- value="{{ cliente['nombre'] }}" muestra el nombre actual -->
+    </div>
+    
+    <!-- CAMPO: Email del cliente (rellenado con valor actual) -->
+    <div class="form-group">
+        <label for="email">Correo Electrónico *</label>
+        <input type="email" 
+               id="email" 
+               name="email" 
+               placeholder="Ej: juan@ejemplo.com"
+               value="{{ cliente['email'] }}"
+               required>
+    </div>
+    
+    <!-- CAMPO: Teléfono del cliente (rellenado con valor actual) -->
+    <div class="form-group">
+        <label for="telefono">Teléfono *</label>
+        <input type="tel" 
+               id="telefono" 
+               name="telefono" 
+               placeholder="Ej: +56 9 1234 5678"
+               value="{{ cliente['telefono'] }}"
+               required>
+    </div>
+    
+    <!-- CAMPO: Dirección del cliente (rellenado con valor actual) -->
+    <div class="form-group">
+        <label for="direccion">Dirección *</label>
+        <textarea id="direccion" 
+                  name="direccion" 
+                  placeholder="Ej: Calle Principal 123, Departamento 4B" 
+                  required>{{ cliente['direccion'] }}</textarea>
+        <!-- Para textarea, el valor va dentro de la etiqueta -->
+    </div>
+    
+    <!-- Información de auditoría -->
+    {% if cliente.get('fecha_creacion') %}
+    <div style="background-color: #f8f9fa; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+        <p style="margin: 0; color: #666; font-size: 0.9em;">
+            <strong>Creado:</strong> {{ cliente['fecha_creacion'] }}<br>
+            {% if cliente.get('fecha_actualizacion') %}
+            <strong>Última actualización:</strong> {{ cliente['fecha_actualizacion'] }}
+            {% endif %}
+        </p>
+    </div>
+    {% endif %}
+    
+    <!-- Botones de acción -->
+    <div class="form-footer">
+        <!-- Botón guardar cambios: envía el formulario por POST a actualizar_cliente_post -->
+        <button type="submit" class="btn btn-success">
+            💾 Guardar Cambios
+        </button>
+        
+        <!-- Botón cancelar: vuelve a la lista sin guardar -->
+        <a href="{{ url_for('listar_clientes') }}" class="btn btn-secondary">
+            ❌ Cancelar
+        </a>
+    </div>
+</form>
+
+<!-- Información adicional -->
+<p style="color: #999; margin-top: 30px; font-size: 0.9em;">
+    * Todos los campos marcados con asterisco son obligatorios
+</p>
+{% endblock %}
